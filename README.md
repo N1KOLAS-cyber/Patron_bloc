@@ -1,16 +1,68 @@
-# patron_b02
+# Contador Interactivo con Flutter y BLoC
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Descripción
+Este proyecto es un ejemplo de cómo implementar el patrón **BLoC** en Flutter para manejar estados de manera eficiente y reactiva. La aplicación consiste en un **contador interactivo** que permite:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Incrementar y decrementar el valor del contador.
+- Reiniciar el contador y el texto mostrado.
+- Cambiar el texto dinámicamente mediante un `TextField`.
+- Actualizar colores de la interfaz según el valor del contador.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Se utiliza la dependencia **Equatable** para garantizar comparaciones eficientes de estados y asegurar que la interfaz solo se reconstruya cuando los valores cambian, evitando renderizados innecesarios.
+
+
+## Funcionalidades
+1. **Eventos principales:**
+   - `CounterIncremented` → Incrementa el contador.
+   - `CounterDecremented` → Decrementa el contador.
+   - `CounterReset` → Reinicia el contador y el texto.
+   - `CounterTextChanged` → Actualiza el texto en pantalla.
+
+2. **Estados:**
+   - `value` → Número actual del contador.
+   - `color` → Color dinámico según el valor del contador.
+   - `text` → Texto editable en pantalla.
+
+3. **Interfaz visual:**
+   - Botones para incrementar, decrementar y reiniciar.
+   - Campo de texto (`TextField`) editable por el usuario.
+   - Texto en pantalla que se actualiza según los estados.
+
+---
+
+## Tecnologías
+- Flutter
+- Dart
+- flutter_bloc
+- Equatable
+
+---
+
+## Estructura del proyecto
+lib/
+├── counter/
+│ ├── counter_bloc.dart # Lógica de negocios y manejo de eventos/estados
+│ ├── counter_event.dart # Definición de eventos (incrementar, decrementar, resetear, cambiar texto)
+│ ├── counter_state.dart # Definición de estados (valor del contador, color, texto)
+│ └── counter_page.dart # Interfaz de usuario y Widgets
+├── main.dart # Punto de entrada de la aplicación
+
+
+
+Detalles de implementación
+
+Equatable: Usado en CounterState para comparar estados de forma eficiente. Evita que Flutter reconstruya widgets innecesariamente si los valores no cambian.
+
+TextField: Permite al usuario escribir texto que se muestra dinámicamente en pantalla. Cada cambio se dispara como un evento CounterTextChanged.
+
+BLoC: Separa la lógica de la interfaz, manteniendo el código más organizado y escalable. Todos los eventos son gestionados por CounterBloc.
+
+Durante la implementación, enfrentamos problemas típicos de Flutter como importaciones ambiguas, errores de tipo y errores de null-safety. Aprender a interpretarlos fue crucial para poder implementar correctamente el BLoC y garantizar la actualización correcta de la UI.
+
+Autor
+
+Nicolás Gamboa
+Estudiante de Ingeniería de Software
